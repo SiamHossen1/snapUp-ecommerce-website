@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .custom-path::after {
+    content: "";
+    position: absolute;
+    width: 0.3rem;
+    height: 0.3rem;
+    bottom: -0.3rem;
+    left: 0;
+    background-color: rgb(234 88 12);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  @keyframes start {
+    0% {
+      left: -300px;
+      width: -1px;
+    }
+    100% {
+      left: 0px;
+      width: 210px;
+    }
+  }
+
+  @keyframes end {
+    0% {
+      left: 0px;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+
+  .start-animation {
+    animation-name: start;
+    animation-duration: 0.4s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+  }
+
+  .end-animation {
+    animation-name: end;
+    animation-duration: 0.4s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+  }
+
+  .element-with-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(249 115 22);
+  }
+
+  .element-with-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .element-with-scrollbar::-webkit-scrollbar-track {
+    background-color: rgb(206, 206, 206);
+    border-radius: 20px;
+  }
+
+  .element-with-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(249 115 22);
+    border-radius: 20px;
+  }
+
+  .element-with-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
