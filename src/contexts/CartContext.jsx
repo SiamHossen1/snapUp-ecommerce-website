@@ -6,7 +6,6 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const addToCart = (id, title, price, amount) => {
-    console.log(id, title, price, amount);
     dispatch({ type: ADD_TO_CART, payload: { id, title, price, amount } });
   };
   const removeItem = (id) => {
@@ -17,15 +16,16 @@ const CartProvider = ({ children }) => {
     dispatch({ type: CLEAR_CART });
   };
 
-  // const setDecrease = (id) => {
-  //   dispatch({ type: SET_DECREMENT, payload: id });
-  // };
+  const setDecrease = (id) => {
+    dispatch({ type: "SET_DECREMENT", payload: id });
+  };
 
-  // const setIncrease = (id) => {
-  //   dispatch({ type: SET_INCREMENT, payload: id });
-  // };
+  const setIncrement = (id) => {
+    dispatch({ type: "SET_INCREMENT", payload: id });
+  };
 
   useEffect(() => {
+    dispatch({ type: "CART_TOTAL_PRICE" });
     localStorage.setItem("snapCart", JSON.stringify(state.cart));
   }, [state.cart]);
 
@@ -36,6 +36,8 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeItem,
         clearCart,
+        setDecrease,
+        setIncrement,
       }}
     >
       {children}

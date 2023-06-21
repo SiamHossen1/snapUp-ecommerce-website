@@ -34,7 +34,7 @@ const MainNavbar = () => {
         <div className="relative cursor-pointer">
           <BsFillCartFill className=" text-3xl" />
           <p className="absolute -top-4 -right-[0.75rem] bg-white rounded-[50%] text-orange-500 px-2 mt-2 font-medium">
-            {cart.length}
+            {cart?.length}
           </p>
         </div>
       </Link>

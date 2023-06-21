@@ -14,6 +14,7 @@ import SingleCategoryProducts from "./SingleCategoryProducts";
 import Home from "./Home";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
+import SearchResult from "./SearchResult";
 import Banner from "../ui/Banner";
 import AllCategoryProducts from "../ui/AllCategoryProducts";
 import ProductImageGallery from "../ui/ProductImageGallery";
@@ -22,6 +23,7 @@ import AddToCart from "../ui/AddToCart";
 import CartAmountToggle from "../ui/CartAmountToggle";
 import CartItems from "../ui/CartItems";
 import EmptyCart from "../ui/EmptyCart";
+import UnderDevelopment from "../error/UnderDevelopment";
 export {
   Header,
   Footer,
@@ -47,4 +49,6 @@ export {
   CartAmountToggle,
   CartItems,
   EmptyCart,
+  UnderDevelopment,
+  SearchResult,
 };

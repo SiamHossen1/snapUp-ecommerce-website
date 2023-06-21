@@ -21,6 +21,7 @@ const categories_api = "https://dummyjson.com/products/categories/";
 const single_categorory_api = "https://dummyjson.com/products/category/";
 const all_products_api = "https://dummyjson.com/products?limit=100";
 const single_products_api = "https://dummyjson.com/products/";
+const search_products_api = "https://dummyjson.com/products/search?q=";
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -83,6 +84,20 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const getSearchProduct = async (value) => {
+    dispatch({ type: "SET_SEARCH_PRODUCT_LOADING" });
+    try {
+      const res = await fetch(`${search_products_api}${value}`);
+      const searchResult = await res.json();
+      dispatch({
+        type: "SET_SEARCH_PRODUCT_DATA",
+        payload: searchResult.products,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCategories(categories_api);
   }, []);
@@ -92,7 +107,12 @@ const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ ...state, getSingleCategoryProducts, getProdcutDetails }}
+      value={{
+        ...state,
+        getSingleCategoryProducts,
+        getProdcutDetails,
+        getSearchProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>

@@ -26,6 +26,8 @@ const initialState = {
   singleProductLoading: false,
   singleProductError: false,
   singleProduct: {},
+  searchProductLoading: false,
+  searchProduct: [],
 };
 
 const reducer = (state, action) => {
@@ -104,6 +106,19 @@ const reducer = (state, action) => {
         ...state,
         singleProductLoading: false,
         singleProductError: true,
+      };
+
+    case "SET_SEARCH_PRODUCT_LOADING":
+      return {
+        ...state,
+        searchProductLoading: true,
+      };
+
+    case "SET_SEARCH_PRODUCT_DATA":
+      return {
+        ...state,
+        searchProductLoading: false,
+        searchProduct: action.payload,
       };
 
     default:
