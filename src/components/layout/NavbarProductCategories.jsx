@@ -16,7 +16,7 @@ const NavbarProductCategories = () => {
               className="cursor-pointer"
               onClick={() => getSingleCategoryProducts(elem)}
             >
-              {elem}
+              {elem.replace(/-/g, " ")}
             </p>
           </Link>
         );

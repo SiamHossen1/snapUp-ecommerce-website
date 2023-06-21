@@ -1,15 +1,15 @@
 import React from "react";
 import useProductContext from "../../hooks/useProductContext";
 import GridWrapper from "../common/GridWrapper";
+import Loading from "../common/Loading";
 
 const SingleCategoryProducts = () => {
   const { singleCategoriesProductsLoading, singleCategoryProducts } =
     useProductContext();
   if (singleCategoriesProductsLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
-  console.log(singleCategoryProducts[0].category);
-  let title = singleCategoryProducts[0].category;
+  let title = singleCategoryProducts[0].category.replace(/-/g, " ");
   return (
     <div className="bg-gray-100 px-20">
       <GridWrapper title={title} productArray={singleCategoryProducts} />

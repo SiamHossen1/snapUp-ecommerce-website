@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className=" bg-red-500 py-6 text-white">
+    <div className=" bg-orange-600 py-6 text-white">
       <div className="flex justify-center items-center">
         <a href="#">PRIVACY POLICY</a>
         <a

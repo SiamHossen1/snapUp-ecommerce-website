@@ -6,6 +6,7 @@ import {
   Cart,
   NotFound,
   SingleCategoryProducts,
+  ProductDetails,
 } from "./components/pages";
 const App = () => {
   return (
@@ -17,6 +18,10 @@ const App = () => {
           <Route
             path="/singlecategory"
             element={<SingleCategoryProducts />}
+          ></Route>
+          <Route
+            path="/productdetails/:id"
+            element={<ProductDetails />}
           ></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="*" element={<NotFound />}></Route>

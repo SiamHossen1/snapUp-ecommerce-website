@@ -10,12 +10,17 @@ import {
   SET_SINGLE_CATEGORIES_PRODUCTS_LOADING,
   SET_SINGLE_CATEGORIES_PRODUCTS_DATA,
   SET_SINGLE_CATEGORIES_PRODUCTS_ERROR,
+  SET_SINGLE_PRODUCT_LOADING,
+  SET_SINGLE_PRODUCT_DATA,
+  SET_SINGLE_PRODUCT_ERROR,
 } from "../utils/strings";
 
 const ProductContext = createContext();
+
 const categories_api = "https://dummyjson.com/products/categories/";
 const single_categorory_api = "https://dummyjson.com/products/category/";
 const all_products_api = "https://dummyjson.com/products?limit=100";
+const single_products_api = "https://dummyjson.com/products/";
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -31,6 +36,7 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: SET_CATEGORIES_ERROR });
     }
   };
+
   // Get All Category Products
   const getAllCategoryProducts = async (all_products_api) => {
     dispatch({ type: SET_ALL_CATEGORIES_PRODUCTS_LOADING });
@@ -62,6 +68,21 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  // Get Single Product
+  const getProdcutDetails = async (id) => {
+    dispatch({ type: SET_SINGLE_PRODUCT_LOADING });
+    try {
+      const res = await fetch(`${single_products_api}${id}`);
+      const singleProduct = await res.json();
+      dispatch({
+        type: SET_SINGLE_PRODUCT_DATA,
+        payload: singleProduct,
+      });
+    } catch (error) {
+      dispatch({ type: SET_SINGLE_PRODUCT_ERROR });
+    }
+  };
+
   useEffect(() => {
     getCategories(categories_api);
   }, []);
@@ -70,7 +91,9 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ ...state, getSingleCategoryProducts }}>
+    <ProductContext.Provider
+      value={{ ...state, getSingleCategoryProducts, getProdcutDetails }}
+    >
       {children}
     </ProductContext.Provider>
   );

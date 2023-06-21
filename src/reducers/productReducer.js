@@ -8,6 +8,9 @@ import {
   SET_SINGLE_CATEGORIES_PRODUCTS_LOADING,
   SET_SINGLE_CATEGORIES_PRODUCTS_DATA,
   SET_SINGLE_CATEGORIES_PRODUCTS_ERROR,
+  SET_SINGLE_PRODUCT_LOADING,
+  SET_SINGLE_PRODUCT_DATA,
+  SET_SINGLE_PRODUCT_ERROR,
 } from "../utils/strings";
 
 const initialState = {
@@ -20,6 +23,9 @@ const initialState = {
   singleCategoriesProductsLoading: false,
   singleCategoriesProductsLoadingError: false,
   singleCategoryProducts: [],
+  singleProductLoading: false,
+  singleProductError: false,
+  singleProduct: {},
 };
 
 const reducer = (state, action) => {
@@ -42,6 +48,7 @@ const reducer = (state, action) => {
         catagoriesLoading: false,
         catagoriesError: true,
       };
+
     // Handle All Categories Products
     case SET_ALL_CATEGORIES_PRODUCTS_LOADING:
       return {
@@ -60,6 +67,7 @@ const reducer = (state, action) => {
         allCategoriesProductsLoading: false,
         allCategoriesProductsLoadingError: true,
       };
+
     // Handle Single Category Products
     case SET_SINGLE_CATEGORIES_PRODUCTS_LOADING:
       return {
@@ -78,6 +86,26 @@ const reducer = (state, action) => {
         singleCategoriesProductsLoading: false,
         singleCategoriesProductsLoadingError: true,
       };
+
+    // Handle Single Product
+    case SET_SINGLE_PRODUCT_LOADING:
+      return {
+        ...state,
+        singleProductLoading: true,
+      };
+    case SET_SINGLE_PRODUCT_DATA:
+      return {
+        ...state,
+        singleProductLoading: false,
+        singleProduct: action.payload,
+      };
+    case SET_SINGLE_PRODUCT_ERROR:
+      return {
+        ...state,
+        singleProductLoading: false,
+        singleProductError: true,
+      };
+
     default:
       return state;
   }
